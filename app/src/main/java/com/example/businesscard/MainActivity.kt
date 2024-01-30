@@ -16,10 +16,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,10 +55,11 @@ fun GreetingPreview() {
 
 @Composable
 fun ComposeQuadrantApp() {
+    var backgroundColor = Color(0xFFA2B5A0)
     Column(
         Modifier
             .fillMaxWidth()
-            .background(Color.Green)
+            .background(backgroundColor)
     ) {
         Row (
             Modifier
@@ -70,7 +73,7 @@ fun ComposeQuadrantApp() {
         }
         Row (Modifier.weight(1f)){
             ComposableInfoCard(
-                phone = "+00(00)000-0000",
+                phone = "+11 (123) 444 555 666",
                 socialMedia = "@socialMediaHandle",
                 email = "email@doemail.com",
                 modifier = Modifier.weight(1f)
@@ -85,6 +88,7 @@ private fun ComposableImageCard(
     fullName: String,
     modifier: Modifier = Modifier
 ){
+    var textColor = Color(0xFF008000)
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -107,7 +111,9 @@ private fun ComposableImageCard(
         Text(
             text = title,
             textAlign = TextAlign.Justify,
-            fontSize = 20.sp
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = textColor
         )
     }
 }
@@ -126,22 +132,61 @@ private fun ComposableInfoCard(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text(
-            text = phone,
-            textAlign = TextAlign.Justify,
-            fontSize = 20.sp
-        )
-        Text(
-            text = socialMedia,
-            textAlign = TextAlign.Justify,
-            fontSize = 20.sp
-        )
-        Text(
-            text = email,
-            textAlign = TextAlign.Justify,
-            fontSize = 20.sp
-        )
+        Row (            modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 50.dp)){
+            Image(
+                painter = painterResource(id = R.drawable.ic_phone),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(50.dp)
+                    .padding(8.dp)
+            )
+            Text(
+                text = phone,
+                textAlign = TextAlign.Justify,
+                fontSize = 20.sp,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 50.dp)
 
+        ){
+            Image(
+                painter = painterResource(id = R.drawable.ic_share),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(50.dp)
+                    .padding(8.dp)
+            )
+            Text(
+                text = socialMedia,
+                textAlign = TextAlign.Justify,
+                fontSize = 20.sp,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
+        Row (
+            modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 50.dp)){
+            Image(
+                painter = painterResource(id = R.drawable.ic_email),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(50.dp)
+                    .padding(8.dp)
+            )
+            Text(
+                text = email,
+                textAlign = TextAlign.Justify,
+                fontSize = 20.sp,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
     }
 }
 
